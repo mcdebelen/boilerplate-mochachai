@@ -1,10 +1,16 @@
 const chai = require('chai');
 const assert = chai.assert;
+Browser.site = 'http://localhost:3000'
+const browser = new Browser()
 
 const server = require('../server');
 
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
+
+suiteSetup(function(done) {
+  return browser.visit('/', done);
+});
 
 suite('Functional Tests', function () {
   this.timeout(5000);
